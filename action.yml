@@ -1,0 +1,54 @@
+name: 'Create Release'
+description: 'Create a release from a specified branch'
+author: 'Alessandro Aiezza'
+
+branding:
+  icon: 'tag'
+  color: 'green'
+
+inputs:
+  release_branch:
+    description: 'Branch to tag'
+    required: true
+    default: master
+  name:
+    description: 'The title of the release'
+    required: true
+    default: '0'
+  message:
+    description: 'The message of the release'
+    required: true
+    default: '0'
+  draft:
+    description: 'Is draft ?'
+    required: true
+    default: 'false'
+  prerelease:
+    description: 'Is pre-release ?'
+    required: true
+    default: 'false'
+  create_release:
+    description: 'Create new release'
+    required: true
+    default: 'true'
+  tag:
+    description: 'Tag to use'
+    required: true'
+
+outputs:
+  release:
+    description: 'The newly created release'
+  upload_url:
+    description: 'The URL for uploading assets to the release, which could be used by GitHub Actions for additional uses, for example the @actions/upload-release-asset GitHub Action'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.release_branch }}
+    - ${{ inputs.name }}
+    - ${{ inputs.message }}
+    - ${{ inputs.draft }}
+    - ${{ inputs.prerelease }}
+    - ${{ inputs.create_release }}
+    - ${{ inputs.tag }}
