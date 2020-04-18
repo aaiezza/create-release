@@ -27,14 +27,8 @@ echo "Last hash : ${LAST_HASH}"
 
 LAST_RELEASE=$(git describe --tags "${LAST_HASH}")
 echo "Last release : ${LAST_RELEASE}"
-MAJOR_LAST_RELEASE=$(echo "${LAST_RELEASE}" | awk -v l=${#NEXT_RELEASE} '{ string=substr($0, 1, l); print string; }' )
+MAJOR_LAST_RELEASE=$(echo "${LAST_RELEASE}" | awk -v l=${#TAG} '{ string=substr($0, 1, l); print string; }' )
 echo "Last major release : ${MAJOR_LAST_RELEASE}"
-
-if [ "${MAJOR_LAST_RELEASE}" = "${TAG}" ]; then
-    MINOR_LAST_RELEASE=$(echo "${LAST_RELEASE}" | awk -v l=`expr ${#TAG} + 2` '{ string=substr($0, l); print string; }' )
-    NEXT_RELEASE=${MAJOR_LAST_RELEASE}.$((${MINOR_LAST_RELEASE} + 1))
-    echo "Minor release"
-fi
 
 if [ "${NAME}" = "0" ]; then
 	NAME="release: version ${TAG}"
@@ -64,5 +58,5 @@ if [ "${CREATE_RELEASE}" = "true" ] || [ "${CREATE_RELEASE}" = true ]; then
   echo ${OUTPUT} | jq
 fi;
 
-echo ::set-output name=release::"${TAG}"
-echo ::set-output name=upload_url::"`echo ${OUTPUT} | jq '.upload_url'`"
+echo ::set-output name=release::${TAG}
+echo ::set-output name=upload_url::`echo ${OUTPUT} | jq '.upload_url'`
