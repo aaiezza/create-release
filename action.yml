@@ -1,4 +1,4 @@
-name: 'Create Release'
+name: 'Create Release with Specified Branch'
 description: 'Create a release from a specified branch'
 author: 'Alessandro Aiezza'
 
