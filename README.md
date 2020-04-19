@@ -10,7 +10,7 @@ Branch to tag. Default `master`.
 
 ### `name`
 
-The title of the release. Default `release: version ${NEXT_RELEASE}`.
+The title of the release. Default `release: version ${TAG}`.
 
 ### `message`
 
