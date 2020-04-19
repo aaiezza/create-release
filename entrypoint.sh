@@ -59,4 +59,4 @@ if [ "${CREATE_RELEASE}" = "true" ] || [ "${CREATE_RELEASE}" = true ]; then
 fi;
 
 echo ::set-output name=release::${TAG}
-echo ::set-output name=upload_url::`echo ${OUTPUT} | jq '.upload_url'`
+echo ::set-output name=upload_url::`echo ${OUTPUT} | jq --raw-output '.upload_url'`
