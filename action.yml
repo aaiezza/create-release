@@ -1,10 +1,10 @@
-name: 'Create Release with Specified Branch'
+name: 'Create Branch-specific Release'
 description: 'Create a release from a specified branch'
-author: 'Alessandro Aiezza'
+author: 'Jerez Bain'
 
 branding:
   icon: 'tag'
-  color: 'green'
+  color: 'blue'
 
 inputs:
   release_branch:
